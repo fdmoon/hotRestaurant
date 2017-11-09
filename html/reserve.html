@@ -74,7 +74,16 @@
             var currentURL = window.location.origin;
 
             $.post(currentURL + "/api/new", newReserve, function(data) {
+                if(data === true) {
+                    alert("Your reservation is done!");
+                }
+                else {
+                    alert("There is no table. You're on waitlist!")
+                }
 
+                $("#name-input").val("");
+                $("#phone-input").val("");
+                $("#emiail-input").val("");
             });
         });
 

@@ -51,17 +51,20 @@ app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
   var newtable = req.body;
+  var result = true;
 
   console.log(newtable);
 
   if(tables.length < 5) {
   	tables.push(newtable);
+  	result = true;
   }
   else {
   	waitlist.push(newtable);
+  	result = false;
   }
 
-  res.json(newtable);
+  res.json(result);
 });
 // Make a reservation ========================================
 
@@ -72,7 +75,7 @@ app.get("/api/clear", function(req, res) {
   tables = [];
   waitlist = [];
 
-  res.json({});
+  res.sendFile(path.join(__dirname, "../html/view.html"));
 });
 // Clear tables and waitlist =================================
 
