@@ -46,22 +46,39 @@ app.get("/api/waitlist", function(req, res) {
 
 
 
+// Make a reservation ======================================
 app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
-  var newcharacter = req.body;
-  // newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+  var newtable = req.body;
 
-  console.log(newcharacter);
+  if(tables.length < 5) {
+  	tables.push(newtable);
+  }
+  else {
+  	waitlist.push(newtable);
+  }
 
-  // characters.push(newcharacter);
-
-  res.json(newcharacter);
+  res.json(newtable);
 });
+// Make a reservation ========================================
 
 
 
+// Clear tables and waitlist =================================
+app.post("/api/clear", function(req, res) {
+  tables = [];
+  waitlist = [];
 
+  res.json({});
+});
+// Clear tables and waitlist =================================
+
+
+
+// Server Starting... ========================================
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+// Server Starting... ========================================
+
