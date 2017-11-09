@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="../css/reset.css"> -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/style.css"> -->
 </head>
 
 <body>
@@ -19,7 +19,7 @@
             <hr>
             <h2>Current Reservations and Waiting List</h2>
             <br>
-            <a href="/"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-edit"></span> Make Reservation</button></a>
+            <a href="/reserve"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-edit"></span> Make Reservation</button></a>
             </a>
             <a href="/">
                 <button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button>
@@ -31,20 +31,51 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Current Reservations</h3>
                     </div>
-                    <div class="panel-body"></div>
+                    <div class="panel-body" id="tables-display"></div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Waiting List</h3>
                     </div>
-                    <div class="panel-body"></div>
+                    <div class="panel-body" id="waitlist-display"></div>
                 </div>
             </div>
         </div>
         <div id="foot">
             <ul id="footlinks">
-                <li>API Table Link</li>
-                <li>API Wait List</li>
+                <a href="/api/clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a>
             </ul>
         </div>
     </div>
+
+    <script type="text/javascript">    	
+    	$(document).ready(function() {
+			var currentURL = window.location.origin;
+
+    		$.ajax({
+    			url: currentURL + "/api/tables",
+    			method: "GET"	
+    		}).done(function(tables) {
+    			for(var i=0; i<tables.length; i++) {
+    				var div = $("<div>")
+    				div.text((i+1) + ". " + tables[i].name);
+    				$("#tables-display").append(div);
+    			}
+
+    		});
+
+    		$.ajax({
+    			url: currentURL + "/api/waitlist",
+    			method: "GET"	
+    		}).done(function(waitlist) {
+    			for(var i=0; i<waitlist.length; i++) {
+    				var div = $("<div>")
+    				div.text((i+1) + ". " + waitlist[i].name);
+    				$("#waitlist-display").append(div);
+    			}
+    		});    		
+    	});
+    </script>
+</body>
+</html>
+

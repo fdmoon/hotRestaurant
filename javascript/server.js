@@ -18,15 +18,15 @@ var waitlist = [];
 
 //  links to html ==========================================
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "../html/index.html"));
 });
 
 app.get("/view", function(req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+  res.sendFile(path.join(__dirname, "../html/view.html"));
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "../html/reserve.html"));
 });
 // links to html ===========================================
 
@@ -52,6 +52,8 @@ app.post("/api/new", function(req, res) {
   // This works because of our body-parser middleware
   var newtable = req.body;
 
+  console.log(newtable);
+
   if(tables.length < 5) {
   	tables.push(newtable);
   }
@@ -66,7 +68,7 @@ app.post("/api/new", function(req, res) {
 
 
 // Clear tables and waitlist =================================
-app.post("/api/clear", function(req, res) {
+app.get("/api/clear", function(req, res) {
   tables = [];
   waitlist = [];
 

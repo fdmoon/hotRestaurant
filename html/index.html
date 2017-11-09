@@ -8,7 +8,7 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <!-- <link rel="stylesheet" type="text/css" href="../css/reset.css"> -->
-  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../css/style.css"> -->
 
 </head>
 <body>
@@ -19,16 +19,15 @@
             <h2>Take a seat and have some eats!</h2>
             <br>
 
-      <a href="/"><button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-eye-open"></span> View Tables</button></a>
-      <a href="/"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-edit"></span> Make Reservation</button></a>
+      <a href="/view"><button type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-eye-open"></span> View Tables</button></a>
+      <a href="/reserve"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-edit"></span> Make Reservation</button></a>
     </div>
 
     
 
     <div id="foot">
       <ul id="footlinks">
-        <li>API Table Link</li>
-        <li>API Wait List</li>
+        <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a>
       </ul>
     </div>
   </div>
