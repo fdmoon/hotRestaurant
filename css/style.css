@@ -1,0 +1,20 @@
+/*body {
+	background-image: url("../images/restaurant.gif");
+	background-size: cover;
+	background-repeat: no-repeat
+	background-color: black
+}*/
+
+.jumbotron {
+	text-align: center;
+}
+
+#footlinks {
+	float: left;
+	list-style: none;
+	display: inline;
+}
+
+#foot {
+	display: inline;
+}
