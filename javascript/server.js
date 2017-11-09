@@ -18,15 +18,15 @@ var waitlist = [];
 
 //  links to html ==========================================
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "../html/index.html"));
 });
 
 app.get("/view", function(req, res) {
-  res.sendFile(path.join(__dirname, "view.html"));
+  res.sendFile(path.join(__dirname, "../html/view.html"));
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "../html/reserve.html"));
 });
 // links to html ===========================================
 
@@ -51,15 +51,18 @@ app.post("/api/new", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
   var newtable = req.body;
+  var result = true;
 
   if(tables.length < 5) {
   	tables.push(newtable);
+  	result = true;
   }
   else {
   	waitlist.push(newtable);
+  	result = false;
   }
 
-  res.json(newtable);
+  res.json(result);
 });
 // Make a reservation ========================================
 
